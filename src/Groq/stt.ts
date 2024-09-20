@@ -1,4 +1,6 @@
-const API_ENDPOINT = "https://api.groq.com/openai/v1/audio/transcriptions";
+import Groq from "groq-sdk";
+
+// const API_ENDPOINT = "https://api.groq.com/openai/v1/audio/transcriptions";
 const MODEL_ID = "distil-whisper-large-v3-en";
 
 /* Accepts mp3, mp4, mpeg, mpga, m4a, wav, webm with max file size 25 MB*/
@@ -15,5 +17,12 @@ export async function stt(
 }
 
 async function whisperStt(file: File): Promise<string | null> {
-    return new Promise(() => file.name);
+    const groq = new Groq();
+
+    const transcription = await groq.audio.transcriptions.create({
+        file: file,
+        model: MODEL_ID,
+    });
+
+    return transcription.text;
 }
