@@ -34,7 +34,7 @@ export default function Component() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#ECFDF5] p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen p-4 sm:p-6 md:p-8">
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-4 sm:p-6 md:p-8">
           <h1 className="text-2xl sm:text-3xl font-semibold text-[#064E3B] mb-6 sm:mb-8">My Events</h1>
