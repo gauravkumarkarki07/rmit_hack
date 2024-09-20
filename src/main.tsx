@@ -6,16 +6,22 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import ListEvents from './Events/ListEvents.tsx';
+import EventCard from './Events/EventCard.tsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App/>,
     children: [
       {
         path: '/',
         element: <ListEvents />,
       },
+      {
+        path: 'events/:eventId',
+        element: <EventCard />
+      }
     ],
   },
 ]);
