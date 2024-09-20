@@ -24,5 +24,5 @@ async function whisperStt(file: File): Promise<string | null> {
         model: MODEL_ID,
     });
 
-    return transcription.text;
+    return transcription.text.trim();
 }
