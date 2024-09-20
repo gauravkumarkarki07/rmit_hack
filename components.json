@@ -9,10 +9,5 @@
     "baseColor": "zinc",
     "cssVariables": false,
     "prefix": ""
-  },
-  "aliases": {
-    "components": "@/shadcn/components",
-    "utils": "@/shadcn/lib/utils",
-    "lib": "@/shadcn/lib"
   }
 }

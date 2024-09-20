@@ -5,4 +5,7 @@
   :root {
     --radius: 0.5rem
   }
+  body {
+    @apply bg-[#ECFDF5]; /* Change this to any Tailwind color class */
+  }
 }
