@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import {supabase} from "../supabase/supabaseClient"
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shadcn/components/ui/button';
 
 function App() {
   const [prompts, setPrompts] = useState<any>([]);
