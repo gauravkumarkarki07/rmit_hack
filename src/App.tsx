@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import {supabase} from "../supabase/supabaseClient"
+import { Button } from '@/components/ui/button';
 
 function App() {
   const [prompts, setPrompts] = useState<any>([]);
@@ -15,11 +16,14 @@ function App() {
   }
 
   return (
-    <ul>
-      {prompts.map((prompt) => (
-        <li key={prompt.id}>{prompt.prompt}</li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {prompts.map((prompt) => (
+          <li key={prompt.id}>{prompt.prompt}</li>
+        ))}
+      </ul>
+      <Button className='text-2xl' variant="outline">Hey there</Button>
+    </div>
   );
 }
 
