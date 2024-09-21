@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import { PlusCircle, ChevronRight } from 'lucide-react'
-import {supabase} from "../../supabase/supabaseClient"
 import { useNavigate } from 'react-router-dom';
-import {EventProps} from '../../supabase/types'
 
 export default function Component() {
   const [events, setEvents] = useState<any>([]);
@@ -14,8 +12,6 @@ export default function Component() {
     if (newEventTitle.trim()) {
       const newEvent = { event: newEventTitle };
       setEvents([...events, newEvent])
-      const {error, status, data} = await supabase.from('events').insert(newEvent).select();
-      console.log(data);
       setNewEventTitle('')
     }
   }
@@ -23,15 +19,6 @@ export default function Component() {
   const handleEventClick = (eventId:number) => {
     navigate(`/events/${eventId}`);
   }
-
-  async function getEvents() {
-    const { data } = await supabase.from('events').select();
-    setEvents(data);
-  }
-
-  useEffect(() => {
-    getEvents();
-  }, []);
 
   return (
     <div className="min-h-screen p-4 sm:p-6 md:p-8">
