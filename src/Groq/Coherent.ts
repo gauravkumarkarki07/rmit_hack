@@ -1,12 +1,8 @@
 import Groq from "groq-sdk";
 import GroqCreator, { queryLLama } from "./GroqCreator";
+import { Message, historySummarizer } from "./utils";
 
 const MAX_MESSAGE_CONTEXT = 5;
-
-export type Message = {
-    role: "user" | "assistant" | "system";
-    content: string;
-};
 
 export default class Coherent {
     groq: Groq = GroqCreator();
@@ -79,25 +75,9 @@ export default class Coherent {
         return output;
     }
 
-    async historySummarizer() {
-        const output = await queryLLama(this.groq, [
-            // {
-            //     role: "system",
-            //     content: "You will summarize the messages.",
-            // },
-            ...this.chatHistory,
-            {
-                role: "user",
-                content: "Summarize the conversation please.",
-            },
-        ]);
-
-        return output;
-    }
-
     async trimChatHistory() {
         if (this.chatHistory.length > MAX_MESSAGE_CONTEXT) {
-            this.summary = await this.historySummarizer();
+            this.summary = await historySummarizer(this.groq, this.chatHistory);
 
             this.chatHistory = [];
         }
