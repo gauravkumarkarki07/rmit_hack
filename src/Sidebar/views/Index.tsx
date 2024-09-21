@@ -6,7 +6,7 @@ function Index() {
             <section className="flex flex-col gap-12 text-white px-4 py-4 sticky top-0 z-50">
                 <section>
                     <Link to={'/'} className="text-xl">
-                        Our App
+                        Academic Resource Manager
                     </Link>
                 </section>
                 <nav className="text-lg flex flex-col gap-6">
