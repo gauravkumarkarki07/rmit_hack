@@ -3,14 +3,15 @@ import InputField from "../components/InputField"
 
 function Index() {
   const [transcribedMessage, setTranscribedMessage] = useState<string>();
-  const [summarizedData, setSummarizedData] = useState<string>();
+  const [summarizedData, setSummarizedData] = useState<string[]>([]);
 
   const setData = (data: string) => {
     setTranscribedMessage(data)
   }
 
   const setSummarized = (data: string) => {
-    setSummarizedData(data);
+    const newArray = [...summarizedData, `\n${data}`];
+    setSummarizedData(newArray);
   }
   return (
     <section className="flex flex-col relative min-h-screen justify-between bg-gray-200">

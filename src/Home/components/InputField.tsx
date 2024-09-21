@@ -12,11 +12,10 @@ interface InputFieldProps {
 
 function InputField({setTranscribedData,setSummarized}:InputFieldProps) {
   const { startRecording, stopRecording, isRecording, audioUrl,audioBlob } = AudioRecorder();
-  const[data,setData]=useState<string | null>();
-  const[summarizedData,setSummarizedData]=useState<string |null>();
+  const[data,setData]=useState<string | null>("");
+  const[summarizedData,setSummarizedData]=useState<string |null>("");
 
   const groq=new Coherent();
-
 
   const getSummarized=async()=>{
     if(data){
@@ -38,7 +37,7 @@ function InputField({setTranscribedData,setSummarized}:InputFieldProps) {
       setTranscribedData(data);
       getSummarized();
     }
-  },[data,setTranscribedData]);
+  },[data]);
 
   useEffect(()=>{
     if(audioBlob){
@@ -48,9 +47,10 @@ function InputField({setTranscribedData,setSummarized}:InputFieldProps) {
 
   useEffect(()=>{
     if(summarizedData){
+        // console.log("inside input")
       setSummarized(summarizedData);
     }
-  },[summarizedData,setSummarized])
+  },[summarizedData])
 
   return (
     <section className='flex flex-col items-center justify-center w-full'>
