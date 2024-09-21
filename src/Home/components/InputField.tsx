@@ -2,17 +2,43 @@ import { AudioWaveform, StopCircle } from 'lucide-react';
 import { AudioRecorder } from '../hooks/useRecording'; 
 import { Button } from '@/shadcn/components/ui/button';
 import {stt} from '../../Groq//stt';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Coherent from '../../Groq/Coherent';
 
-function InputField() {
+interface InputFieldProps {
+  setTranscribedData: (data: string) => void;
+  setSummarized: (data: string) => void;
+}
+
+function InputField({setTranscribedData,setSummarized}:InputFieldProps) {
   const { startRecording, stopRecording, isRecording, audioUrl,audioBlob } = AudioRecorder();
+  const[data,setData]=useState<string | null>();
+  const[summarizedData,setSummarizedData]=useState<string |null>();
+
+  const groq=new Coherent();
+
+
+  const getSummarized=async()=>{
+    if(data){
+      const result=await groq.get(data);
+      setSummarizedData(result.summarized);
+    }
+  }
 
 
   const getTranscribeData=async()=>{
     if(audioBlob){
       const result=await stt(audioBlob);
+        setData(result);
     }
   }
+
+  useEffect(()=>{
+    if(data){
+      setTranscribedData(data);
+      getSummarized();
+    }
+  },[data,setTranscribedData]);
 
   useEffect(()=>{
     if(audioBlob){
@@ -20,9 +46,14 @@ function InputField() {
     }
   },[audioBlob]);
 
+  useEffect(()=>{
+    if(summarizedData){
+      setSummarized(summarizedData);
+    }
+  },[summarizedData,setSummarized])
+
   return (
     <section className='flex flex-col items-center justify-center w-full'>
-      
       <section
         onClick={isRecording ? stopRecording : startRecording} 
         className={`flex flex-row items-center justify-center border border-gray-700 rounded-full px-4 py-2 
