@@ -10,3 +10,7 @@ npm i
 Go to https://groq.com/ and create an API key
 
 Paste this API key for `VITE_GROQ_API_KEY` in a `.env` file in the root
+
+```bash
+npm run dev
+```
