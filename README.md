@@ -1,4 +1,4 @@
-# No Name App
+# Clear Speak
 
 <span>This apps allows you get those get the thoughts out of your head and into a coherent information</span>
 
