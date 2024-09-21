@@ -1,4 +1,4 @@
-import Groq from "groq-sdk";
+import GroqCreator from "./GroqCreator";
 
 // const API_ENDPOINT = "https://api.groq.com/openai/v1/audio/transcriptions";
 const MODEL_ID = "distil-whisper-large-v3-en";
@@ -17,7 +17,7 @@ export async function stt(
 }
 
 async function whisperStt(file: File): Promise<string | null> {
-    const groq = new Groq();
+    const groq = GroqCreator();
 
     const transcription = await groq.audio.transcriptions.create({
         file: file,
