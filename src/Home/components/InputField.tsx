@@ -1,9 +1,24 @@
 import { AudioWaveform, StopCircle } from 'lucide-react'; 
 import { AudioRecorder } from '../hooks/useRecording'; 
 import { Button } from '@/shadcn/components/ui/button';
+import {stt} from '../../Groq//stt';
+import { useEffect } from 'react';
 
 function InputField() {
-  const { startRecording, stopRecording, isRecording, audioUrl } = AudioRecorder();
+  const { startRecording, stopRecording, isRecording, audioUrl,audioBlob } = AudioRecorder();
+
+
+  const getTranscribeData=async()=>{
+    if(audioBlob){
+      const result=await stt(audioBlob);
+    }
+  }
+
+  useEffect(()=>{
+    if(audioBlob){
+      getTranscribeData();
+    }
+  },[audioBlob]);
 
   return (
     <section className='flex flex-col items-center justify-center w-full'>

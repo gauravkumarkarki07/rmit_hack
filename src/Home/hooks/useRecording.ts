@@ -5,6 +5,7 @@ export const AudioRecorder=()=> {
   const [audioUrl, setAudioUrl] = useState('');
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const[audioBlob,setAudioBlob]=useState<Blob |null>();
 
   useEffect(() => {
     // Get permission for microphone
@@ -21,6 +22,7 @@ export const AudioRecorder=()=> {
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' });
         const audioUrl = URL.createObjectURL(audioBlob);
         setAudioUrl(audioUrl);
+        setAudioBlob(audioBlob);
         audioChunksRef.current = []; // Reset the chunks for future recordings
       };
     });
@@ -43,7 +45,7 @@ export const AudioRecorder=()=> {
   };
 
   return {
-    startRecording,stopRecording,isRecording,audioUrl
+    startRecording,stopRecording,isRecording,audioUrl,audioBlob
   }
 }
 
