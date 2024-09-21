@@ -4,10 +4,11 @@ import App from './App.tsx'
 import './index.css'
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider,
 } from "react-router-dom";
 import ListEvents from './Events/ListEvents.tsx';
-import EventCard from './Events/EventCard.tsx';
+import Index from './Home/views/Index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -15,12 +16,16 @@ const router = createBrowserRouter([
     element: <App/>,
     children: [
       {
-        path: '/',
-        element: <ListEvents />,
+        path:'',
+        element:<Navigate to={'/events'}/>
       },
       {
-        path: 'events/:eventId',
-        element: <EventCard />
+        path:'/events',
+        element:<ListEvents/>
+      },
+      {
+        path: '/events/:eventId',
+        element: <Index />
       }
     ],
   },

@@ -8,6 +8,10 @@
     "css": "src/index.css",
     "baseColor": "zinc",
     "cssVariables": false,
-    "prefix": ""
+    "prefix":""
+  },
+  "aliases": {
+    "components": "@/shadcn/components",
+    "utils": "@/shadcn/lib/utils"
   }
 }
