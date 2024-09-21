@@ -2,8 +2,11 @@
 
 <span>This apps allows you get those get the thoughts out of your head and into a coherent information</span>
 
-## Installation
+## Running
 ```bash
 git clone https://github.com/gauravkumarkarki07/rmit_hack.git
 npm i
-npm run dev
+```
+Go to https://groq.com/ and create an API key
+
+Paste this API key for `VITE_GROQ_API_KEY` in a `.env` file in the root
